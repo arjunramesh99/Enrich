@@ -1,21 +1,25 @@
 import React from 'react';
-import './App.css';
-import { BrowserRouter, Route } from "react-router-dom";
+import { Router, Route } from "react-router-dom";
 import firebase from 'firebase';
 
 import PersonList from "./components/PersonList";
 import Home from './components/Home';
 import LearnerHome from "./components/LearnerHome";
-import EducatorHome from "./components/EducatorHome";
+import EducatorHome from "./components/Educator/EducatorHome";
+import Login from './components/Educator/Login'
+import EnterRoom from "./components/Learner/EnterRoom";
+
+import history from './components/History'
 
 class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            current_class: null,
-            learners: [],
-            educators: [],
+            firebase_root: null,
+            loggedInEducatorID: null,
         };
+
+        this.handleLogin = this.handleLogin.bind(this);
     }
 
     componentDidMount() {
@@ -38,48 +42,65 @@ class App extends React.Component {
         }
 
         // create a reference to a classroom
-        const class1_ref = firebase.database().ref('classrooms/class1');
-        class1_ref.on('value', snap => {
-            let {professors:educators, students:learners} = snap.val();
-            educators = Object.values(educators);
-            learners = Object.values(learners);
-            this.setState({current_class: class1_ref, educators, learners});
-        });
+        const firebase_root = firebase.database().ref();
+        this.setState({firebase_root});
     }
 
-    componentWillUnmount() {
-        this.state.current_class.off();
+    handleLogin(profName) {
+        this.state.firebase_root.once("value", snap => {
+            const prof_list = snap.val();
+            let profIndex = -1;
+            let loggedInEducatorID = null;
+
+            if(prof_list !== null){
+                profIndex = Object.entries(prof_list).findIndex(el => el[1].name === profName);
+            }
+
+            if(profIndex === -1){
+                loggedInEducatorID = this.state.firebase_root.push({
+                    name: profName
+                });
+                loggedInEducatorID = loggedInEducatorID.key;
+            } else {
+                loggedInEducatorID = Object.entries(prof_list)[profIndex][0];
+            }
+
+            this.setState({
+                loggedInEducatorID
+            })
+        }).then( _ => {
+            history.push('/educatorHome');
+        });
     }
 
     render() {
         return (
-            <BrowserRouter>
-                <div className="App">
-                    <Route exact path={"/"}
-                           component={Home}
-                           />
-                    <Route
-                        path={"/learner"}
-                        render={props => <PersonList {...props} list={this.state.learners} type={"learner"} />}
-                    />
-                    <Route
-                        path={"/educator"}
-                        render={props => <PersonList {...props} list={this.state.educators} type={"educator"} />}
-                    />
+            <Router history={history}>
+                <Route exact path={"/"}
+                       component={Home}
+                />
 
-                    <Route
-                        path={"/learnerHome"}
-                        render={props => <LearnerHome {...props} curr_classroom={this.state.current_class} />}
-                    />
+                <Route
+                    path={"/learner"}
+                    component={EnterRoom}
+                />
 
-                    <Route
-                        path={"/educatorHome"}
-                        render={props => <EducatorHome {...props} curr_classroom={this.state.current_class} />}
-                    />
-                </div>
-            </BrowserRouter>
+                <Route
+                    strict path={"/educator"}
+                    render={props => <Login {...props} handleLogin={this.handleLogin} />}
+                />
+
+                <Route
+                    path={"/learnerHome"}
+                    render={props => <EnterRoom {...props} firebase_root={this.state.firebase_root} />}
+                />
+
+                <Route
+                    path={"/educatorHome"}
+                    render={props => <EducatorHome {...props} {...this.state} />}
+                />
+            </Router>
         );
     }
 }
-
 export default App;
