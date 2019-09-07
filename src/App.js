@@ -7,8 +7,13 @@ import firebase from 'firebase';
 
 class App extends React.Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+        this.state = {
+            learners: [],
+            educators: [],
+        };
+
         const firebaseConfig = {
             apiKey: "AIzaSyDci15pZLADUPwyqprrw3oZciLSnzpJphk",
             authDomain: "enrichdataba.firebaseapp.com",
@@ -25,13 +30,17 @@ class App extends React.Component {
         catch (err) {
             console.log(err);
         }
+
+        const class1_ref = firebase.database().ref('classrooms/class1');
+        class1_ref.on('value', snap => {
+            let {professors:educators, students:learners} = snap.val();
+            educators = Object.values(educators);
+            learners = Object.values(learners);
+            this.setState({educators, learners});
+        })
     }
 
     render() {
-        const studentList = ["Student 1", "Student 2", "Student 3"];
-        const teacherList = ["Teacher 1", "Teacher 2", "Teacher 3"];
-        //const classrooms = firebase.database().ref('classrooms/');
-        //classrooms.push({test_data4: "hello"});
         return (
             <BrowserRouter>
                 <div className="App">
@@ -40,11 +49,11 @@ class App extends React.Component {
                            />
                     <Route
                         path={"/learner"}
-                        render={props => <PersonList {...props} list={studentList} />}
+                        render={props => <PersonList {...props} list={this.state.learners} />}
                     />
                     <Route
                         path={"/educator"}
-                        render={props => <PersonList {...props} list={teacherList} />}
+                        render={props => <PersonList {...props} list={this.state.educators} />}
                     />
                 </div>
             </BrowserRouter>

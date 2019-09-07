@@ -18,12 +18,8 @@ export default class Home extends React.Component {
             <div className={"body"}>
                 <h1 className="heading">Enrich</h1>
                 <div className="div-block">
-                    <Link style={{textDecoration: "none"}} to={"/learner"}>
-                        <a href="#" className="login-button">Learner</a>
-                    </Link>
-                    <Link style={{textDecoration: "none"}} to={"/educator"}>
-                        <a href="#" className="login-button">Educator</a>
-                    </Link>
+                    <Link className={"login-button"} to={"/learner"}>Learner</Link>
+                    <Link className={"login-button"} to={"/educator"}>Educator</Link>
                 </div>
             </div>
         )
