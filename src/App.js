@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter, Route } from "react-router-dom";
 import PersonList from "./components/PersonList";
@@ -19,11 +18,11 @@ class App extends React.Component {
                            component={Home}
                            />
                     <Route
-                        path={"/student"}
+                        path={"/learner"}
                         render={props => <PersonList {...props} list={studentList} />}
                     />
                     <Route
-                        path={"/teacher"}
+                        path={"/educator"}
                         render={props => <PersonList {...props} list={teacherList} />}
                     />
                 </div>
