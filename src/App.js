@@ -30,7 +30,9 @@ class App extends React.Component {
         catch (err) {
             console.log(err);
         }
+    }
 
+    componentDidMount() {
         const class1_ref = firebase.database().ref('classrooms/class1');
         class1_ref.on('value', snap => {
             let {professors:educators, students:learners} = snap.val();
