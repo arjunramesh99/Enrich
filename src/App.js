@@ -32,7 +32,7 @@ class App extends React.Component {
         const studentList = ["Student 1", "Student 2", "Student 3"];
         const teacherList = ["Teacher 1", "Teacher 2", "Teacher 3"];
         //const classrooms = firebase.database().ref('classrooms/');
-        ///classrooms.push({test_data4: "hello"});
+        //classrooms.push({test_data4: "hello"});
         return (
             <BrowserRouter>
                 <div className="App">
