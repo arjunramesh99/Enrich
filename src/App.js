@@ -16,8 +16,6 @@ class App extends React.Component {
             learners: [],
             educators: [],
         };
-
-
     }
 
     componentDidMount() {

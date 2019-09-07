@@ -9,8 +9,6 @@ export default class LearnerHome extends React.Component {
             ls: 0
         };
 
-
-
         this.handleClick = this.handleClick.bind(this);
     }
 
@@ -34,7 +32,6 @@ export default class LearnerHome extends React.Component {
             });
 
     }
-
 
     render() {
         return (
