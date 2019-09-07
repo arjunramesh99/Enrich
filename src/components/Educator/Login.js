@@ -1,6 +1,5 @@
 import React from 'react';
 import { TextField } from '@material-ui/core';
-import history from "../History";
 
 export default class Login extends React.Component {
     constructor(props) {
@@ -25,6 +24,10 @@ export default class Login extends React.Component {
         e.preventDefault();
         e.persist();
         this.props.handleLogin(this.state.username);
+        this.setState({
+            username: "",
+            password: "",
+        })
     }
 
     render() {

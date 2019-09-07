@@ -8,6 +8,7 @@ import Login from './components/Educator/Login'
 import EnterRoom from "./components/Learner/EnterRoom";
 
 import history from './components/History'
+import LearnerHome from "./components/Learner/LearnerHome";
 
 class App extends React.Component {
     constructor(props) {
@@ -18,6 +19,7 @@ class App extends React.Component {
         };
 
         this.handleLogin = this.handleLogin.bind(this);
+        this.handleEnterRoom = this.handleEnterRoom.bind(this);
     }
 
     componentDidMount() {
@@ -71,6 +73,29 @@ class App extends React.Component {
         });
     }
 
+    handleEnterRoom(learnerName, educatorName, roomID) {
+        this.state.firebase_root.once("value", snap => {
+            const root_data = snap.val();
+           const prof_list = Object.values(root_data);
+           const profIndex = prof_list.map(e => e.name).indexOf(educatorName);
+           const profID = Object.keys(root_data)[profIndex];
+           console.log(root_data);
+           console.log(profIndex);
+           console.log(profID);
+           if (profIndex !== -1) {
+               if (prof_list[profIndex].classes.hasOwnProperty(roomID)) {
+                   this.state.firebase_root.child(profID + '/classes/'+ roomID + '/students/').push(
+                       { name: learnerName, ls: 1}
+                   );
+               }
+               //this.state.firebase_root.child(prof_list[profIndex] + '/classes/').once("value", )
+           }
+           else {
+               console.log("Not Found");
+           }
+        })
+    }
+
     render() {
         return (
             <Router history={history}>
@@ -80,17 +105,17 @@ class App extends React.Component {
 
                 <Route
                     path={"/learner"}
-                    component={EnterRoom}
+                    render={props => <EnterRoom {...props} handleEnterRoom={this.handleEnterRoom} /> }
                 />
 
                 <Route
-                    strict path={"/educator"}
+                    path={"/educator"}
                     render={props => <Login {...props} handleLogin={this.handleLogin} />}
                 />
 
                 <Route
                     path={"/learnerHome"}
-                    render={props => <EnterRoom {...props} firebase_root={this.state.firebase_root} />}
+                    render={props => <LearnerHome {...props} />}
                 />
 
                 <Route

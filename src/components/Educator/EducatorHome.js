@@ -44,6 +44,24 @@ class ClassroomPanel extends React.Component {
         )
     }
 }
+/*
+onValueChange = snap => {
+    let student_count = 0;
+    let num_positive = 0;
+    Object.values(snap.val()).forEach(student => {
+        num_positive += student.ls;
+        student_count++;
+    });
+    console.log("Student count: "+ student_count);
+    console.log("Positive: "+ num_positive);
+    let threshold = student_count/2;
+    const grad = 255 / threshold;
+    let green_grad = (num_positive >= threshold ? 255: grad * num_positive);
+    let red_grad = (num_positive <= threshold ? 255: 255 - grad * (num_positive - threshold));
+    this.setState({
+        rgb: [red_grad, green_grad, 0]
+    })
+}*/
 
 class CurrentClass extends React.Component {
     render() {

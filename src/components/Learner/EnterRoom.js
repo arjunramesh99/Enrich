@@ -16,6 +16,15 @@ export default class EnterRoom extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
+
+        console.log(this.props);
+        this.props.handleEnterRoom(this.state.learner_name, this.state.educator_name, this.state.room_id);
+
+        /*this.setState({
+            learner_name: "",
+            educator_name: "",
+            room_id: ""
+        })*/
     }
 
     handleChange(e) {
@@ -34,6 +43,7 @@ export default class EnterRoom extends React.Component {
                 <br />
                 Professor Name:<br />
                 <input type={"text"} onChange={this.handleChange} id={"educator_name"} />
+                <br />
                 Room ID:<br />
                 <input type="text" onChange={this.handleChange} id="room_id" />
                 <br /><br />
