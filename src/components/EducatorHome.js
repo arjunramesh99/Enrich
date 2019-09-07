@@ -22,15 +22,20 @@ export default class EducatorHome extends React.Component {
             num_positive += student.ls;
             student_count++;
         });
-        const grad = 255 / student_count;
+        console.log("Student count: "+ student_count);
+        console.log("Positive: "+ num_positive);
+        let threshold = student_count/2;
+        const grad = 255 / threshold;
+        let red_num_thresh = 255
+        let green_grad = (num_positive >= threshold ? 255: grad * num_positive);
+        let red_grad = (num_positive <= threshold ? 255: 255 - grad * (num_positive - threshold));
         this.setState({
-            rgb: [255 - grad * num_positive, grad * num_positive, 0]
+            rgb: [red_grad, green_grad, 0]
         })
     };
 
     componentDidMount() {
         this.state.students_ref.on('value', this.onValueChange);
-        console.log("12")
     }
 
     componentWillUnmount() {
@@ -40,7 +45,10 @@ export default class EducatorHome extends React.Component {
     render() {
         console.log(this.state.rgb);
         return (
-            <div>Learning Ratio</div>
+            <button
+                className={"learningStateButton"}
+                style={{backgroundColor: "rgb("+this.state.rgb[0]+","+this.state.rgb[1]+", 0)"}}
+            />
         )
     }
 }
