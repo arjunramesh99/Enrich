@@ -58,11 +58,11 @@ class App extends React.Component {
                            />
                     <Route
                         path={"/learner"}
-                        render={props => <PersonList {...props} list={this.state.learners} />}
+                        render={props => <PersonList {...props} list={this.state.learners} type={"learner"} />}
                     />
                     <Route
                         path={"/educator"}
-                        render={props => <PersonList {...props} list={this.state.educators} />}
+                        render={props => <PersonList {...props} list={this.state.educators} type={"educator"} />}
                     />
 
                     <Route
