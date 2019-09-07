@@ -1,0 +1,9 @@
+.learningStateButton {
+    width: 200px;
+    height: 200px;
+    margin: 35px;
+    padding: 0;
+    border-radius: 100px;
+    background-color: lime;
+    border-width: 0;
+}

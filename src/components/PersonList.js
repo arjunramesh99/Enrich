@@ -6,7 +6,9 @@ export default class PersonList extends React.Component {
         return (
             <div>
                 <ul>
-                    {this.props.list.map(el => <li key={el.name}>{el.name}</li>)}
+                    {this.props.list.map(el => <li key={el.name}>{
+                        <Link to={"learnerHome"}>{el.name}</Link>
+                    }</li>)}
                 </ul>
                 <button><Link to={"/"}>Back</Link></button>
             </div>
