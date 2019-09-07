@@ -47,6 +47,10 @@ class App extends React.Component {
         });
     }
 
+    componentWillUnmount() {
+        this.state.current_class.off();
+    }
+
     render() {
         return (
             <BrowserRouter>

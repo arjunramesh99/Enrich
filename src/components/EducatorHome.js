@@ -30,10 +30,11 @@ export default class EducatorHome extends React.Component {
 
     componentDidMount() {
         this.state.students_ref.on('value', this.onValueChange);
+        console.log("12")
     }
 
     componentWillUnmount() {
-        this.state.student_ref.off('value')
+        this.state.students_ref.off();
     }
 
     render() {
