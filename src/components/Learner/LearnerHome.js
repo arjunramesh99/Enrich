@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/studentHome_styles.css'
+import '../../styles/studentHome_styles.css'
 
 export default class LearnerHome extends React.Component {
     constructor(props) {

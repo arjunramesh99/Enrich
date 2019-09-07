@@ -2,9 +2,7 @@ import React from 'react';
 import { Router, Route } from "react-router-dom";
 import firebase from 'firebase';
 
-import PersonList from "./components/PersonList";
 import Home from './components/Home';
-import LearnerHome from "./components/LearnerHome";
 import EducatorHome from "./components/Educator/EducatorHome";
 import Login from './components/Educator/Login'
 import EnterRoom from "./components/Learner/EnterRoom";
