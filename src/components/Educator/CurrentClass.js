@@ -1,24 +1,24 @@
 import React from "react";
 import { Switch, Route } from 'react-router-dom';
 import '../../styles/educatorHome_styles.css'
+import Chat from '../Chat/Chat'
 import Transcript from "./Transcript";
 
 const CurrentClassElements = props => {
     return (
         <div className={"current_class_parent"}>
-            <div className={"learning_ratio_monitor_container"}>
-                <div className={"heading_1"}>Your Learning Ratio</div>
-                <div
-                    className={"learning_ratio_monitor"}
-                    style={{backgroundColor: props.calculateColorGradient(props.classroom)}}
-                >
+            <Chat />
+            <div className={"right_third"}>
+                <div className={"learning_ratio_monitor_container"}>
+                    <div className={"heading_1"}>Your Learning Ratio</div>
+                    <div
+                        className={"learning_ratio_monitor"}
+                        style={{backgroundColor: props.calculateColorGradient(props.classroom)}}
+                    >
+                    </div>
                 </div>
+                <Transcript firebase_root={props.firebase_root} />
             </div>
-            <div
-                className={"chat_room"}>
-                This is chat room area.
-            </div>
-            <Transcript firebase_root={props.firebase_root} />
         </div>
 
     );

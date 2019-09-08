@@ -28,7 +28,7 @@ export default class EducatorHome extends React.Component {
     render() {
         return (
             <div className={"educator_home"}>
-                <ClassroomPanel {...this.state} setActiveClassroom={this.setActiveClassroom} />
+                <ClassroomPanel {...this.state} />
                 <CurrentClass
                     classrooms={this.state.classrooms}
                     match={this.props.match}
