@@ -27,9 +27,13 @@ export default class EducatorHome extends React.Component {
 
     render() {
         return (
-            <div className={"educatorHome"}>
+            <div className={"educator_home"}>
                 <ClassroomPanel {...this.state} setActiveClassroom={this.setActiveClassroom} />
-                <CurrentClass classrooms={this.state.classrooms} match={this.props.match}/>
+                <CurrentClass
+                    classrooms={this.state.classrooms}
+                    match={this.props.match}
+                    firebase_root={this.props.firebase_root}
+                />
             </div>
         )
     }

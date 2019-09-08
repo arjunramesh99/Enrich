@@ -1,4 +1,84 @@
-.educatorHome {
+.current_class_parent {
+    display: grid;
+    height: 100%;
+    width: 80%;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-column-gap: 0;
+    grid-row-gap: 0;
+    grid-template-areas:
+            "c l"
+            "c t";
+}
+
+.learning_ratio_monitor_container {
+    grid-area: l;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.chat_room {
+    grid-area: c;
+}
+
+.transcript {
+    grid-area: t;
+}
+
+.heading_1 {
+    padding: 20px;
+    font-family: 'Kaushan Script', sans-serif;
+    color: #41a6ff;
+    font-size: 20px;
+    font-weight: 400;
+    text-align: center;
+}
+
+.learning_ratio_monitor {
+    width: 100px;
+    height: 100px;
+    border-radius: 400px;
+}
+
+.classroom_panel {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #43b2e2;
+}
+
+.no_class_selected {
+    font-size: 15px;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.classroom_list_header {
+    margin: 20px;
+    padding-top: 40px;
+    -webkit-align-self: stretch;
+    -ms-grid-row-align: stretch;
+    align-self: stretch;
+    color: #fff;
+    font-size: 30px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.classroom_list {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.educator_home {
+    width: 100%;
+    height: 100%;
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -11,9 +91,46 @@
     -webkit-align-items: stretch;
     -ms-flex-align: stretch;
     align-items: stretch;
+    font-family: Exo, sans-serif;
 }
 
-.classrooms {
-    width: 20%;
-    background-color: #43b2e2;
+.classroom_name {
+    color: white;
+    text-decoration: none;
+    padding: 10px 10px;
+    font-size: 20px;
+}
+
+.new_room_field {
+    height: 30px;
+    width: 80%;
+    max-width: 200px;
+    border: 0 solid #3898ec;
+    padding-left: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.new_class_form {
+    padding-bottom: 40px;
+    color: white;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: flex-end;
+    justify-self: flex-end;
+}
+
+.submit_button {
+    padding: 6px 25px;
+    margin-top: 10px;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 10px;
+    -webkit-transition: color 200ms ease, background-color 200ms ease, -webkit-transform 200ms ease;
+    transition: transform 200ms ease, color 200ms ease, background-color 200ms ease, -webkit-transform 200ms ease;
+    font-family: Exo, sans-serif;
+    font-size: 15px;
 }

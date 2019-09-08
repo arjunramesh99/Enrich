@@ -31,18 +31,21 @@ class ClassroomPanel extends React.Component {
 
     render() {
         return (
-            <div className={"classrooms"}>
-                <p>List of current classes</p>
-                {this.props.classrooms.map((classroom, index) =>
-                    <li><Link replace to={"/educatorHome/" + index} >
-                        {classroom.name}
-                    </Link></li>
-                )}
+            <div className={"classroom_panel"}>
+                <div className={"classroom_list_header "}>Your Classes</div>
 
-                <form onSubmit={this.handleSubmit}>
-                    Enter New Class ID:<br />
-                    <input type="text" onChange={this.handleChange} value={this.state.newClassName} id="newClassName" />
-                    <button>Create Class!</button>
+                <div className={"classroom_list"}>
+                    {this.props.classrooms.map((classroom, index) =>
+                        <Link className={"classroom_name"} replace to={"/educatorHome/" + index} >
+                            # {classroom.name}
+                        </Link>
+                    )}
+                </div>
+
+                <form className={"new_class_form"} onSubmit={this.handleSubmit}>
+                    Enter New Class ID:
+                    <input className={"new_room_field"} type="text" onChange={this.handleChange} value={this.state.newClassName} id="newClassName" />
+                    <button className={"submit_button"}>Create Class!</button>
                 </form>
             </div>
         )
