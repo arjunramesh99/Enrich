@@ -19,11 +19,15 @@ class Transcript extends React.Component {
 
     render() {
         return (
-            <textarea
-                className={"transcript"}
-                value={this.state.speechTranscript}
-                readOnly
-            />
+            <div className={"transcript"}>
+                <div style={{textAlign: "center"}}>Live Lecture Transcript</div>
+                <textarea
+                    className={"transcript_text"}
+                    value={this.state.speechTranscript}
+                    readOnly
+                />
+            </div>
+
         )
     }
 }

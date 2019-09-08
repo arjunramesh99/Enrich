@@ -12,6 +12,7 @@ export default class Login extends React.Component {
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.handleReturn = this.handleReturn.bind(this);
     }
 
     handleChange(e) {
@@ -30,9 +31,16 @@ export default class Login extends React.Component {
         })
     }
 
+    handleReturn(e) {
+        e.preventDefault();
+        window.history.back();
+    }
+
     render() {
+        console.log(this.props);
         return(
             <div className={"form-block w-form"}>
+                <div className={'login_header'}>Educator Access</div>
                 <form className={'info-form'} onSubmit={this.handleSubmit}>
                     <label htmlFor={"username"} className={"field-label"}>Username</label>
                     <input className={'text-field w-input'} type="text" onChange={this.handleChange} id="username" />
@@ -41,6 +49,7 @@ export default class Login extends React.Component {
                     <input className={'text-field w-input'} type="password" onChange={this.handleChange} id="password" />
 
                     <button className={"login-button"}>Login</button>
+                    <a onClick={this.handleReturn} className={"field-label"} href={"#"}>Back</a>
                 </form>
             </div>
         )

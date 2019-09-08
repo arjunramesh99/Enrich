@@ -1,4 +1,5 @@
 .current_class_parent {
+    font-family: Exo sans-serif;
     display: flex;
     flex-direction: row;
     height: 100%;
@@ -17,6 +18,11 @@
 .transcript {
     height: 100%;
     font-family: Exo;
+}
+
+.transcript_text {
+    width: 100%;
+    height: 100%;
 }
 
 .right_third {

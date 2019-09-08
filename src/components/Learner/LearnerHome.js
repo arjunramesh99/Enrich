@@ -17,6 +17,10 @@ export default class LearnerHome extends React.Component {
         this.handleClick = this.handleClick.bind(this);
     }
 
+    componentWillUnmount() {
+        this.state.studentRef.remove();
+    }
+
     handleClick(e) {
         this.setState(curr_state => {
             return {
@@ -33,20 +37,17 @@ export default class LearnerHome extends React.Component {
                 <Chat />
                 <div className={"right_third"}>
                     <div className={"learning_ratio_monitor_container"}>
-                        <div className={"heading_1"}>Learning Status</div>
-                        <div className={"learning_ratio_monitor"}>
-                            <button
-                                href="#"
-                                className={"learningStateButton"}
-                                style={{backgroundColor: this.state.ls ? 'lime' : 'red'}}
-                                onClick={this.handleClick}
-                            >
-                                <div>
-                                    <b>{this.state.ls ? 'I understand!' : "I don't understand.."}</b>
-                                    <br/><br/><br/>*Click to toggle*
-                                </div>
-                            </button>
-                        </div>
+                        <button
+                            href="#"
+                            className={"learningStateButton"}
+                            style={{backgroundColor: this.state.ls ? 'lime' : 'red'}}
+                            onClick={this.handleClick}
+                        >
+                            <div style={{fontFamily: "Exo", fontSize: 20}}>
+                                <b>{this.state.ls ? 'I understand!' : "I don't understand.."}</b>
+                                <br/><br/>*Click to toggle*
+                            </div>
+                        </button>
                     </div>
                     <Transcript firebase_root={this.props.firebase_root} />
                 </div>
