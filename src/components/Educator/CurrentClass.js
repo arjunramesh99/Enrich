@@ -9,9 +9,9 @@ class CurrentClass extends React.Component {
 
     calculate_colour_gradient(classroom) {
         console.log(classroom);
-        /*let student_count = 0;
+        let student_count = 0;
         let num_positive = 0;
-        Object.values(snap.val()).forEach(student => {
+        Object.values(classroom.students).forEach(student => {
             num_positive += student.ls;
             student_count++;
         });
@@ -20,8 +20,8 @@ class CurrentClass extends React.Component {
         let threshold = student_count / 2;
         const grad = 255 / threshold;
         let green_grad = (num_positive >= threshold ? 255 : grad * num_positive);
-        let red_grad = (num_positive <= threshold ? 255 : 255 - grad * (num_positive - threshold));*/
-        return "rgb(255, 0, 0)";
+        let red_grad = (num_positive <= threshold ? 255 : 255 - grad * (num_positive - threshold));
+        return "rgb(" + red_grad + ", " + green_grad + ", 0)";
     }
 
     render() {
@@ -36,10 +36,11 @@ class CurrentClass extends React.Component {
                     <Route
                         path={'/educatorHome/:class_index'}
                         render={(props) =>
-                            <button>
+                            <button
                                 href="#"
                                 className={"learningStateButton"}
-                                style={{backgroundColor: this.calculate_colour_gradient(this.props.classrooms[this.props.match.params.class_index])}}
+                                style={{backgroundColor: this.calculate_colour_gradient(this.props.classrooms[props.match.params.class_index])}}
+                                >
                             </button>}
                     />
                 </Switch>
