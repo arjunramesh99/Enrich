@@ -2,15 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4e230a8a-169d-4813-bc82-dbace2bddc6c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/Chat/MessageList.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Chat/SendMessageForm.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Chat/config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/styles/chat.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Chat/chat.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Chat/Chat.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Educator/CurrentClass.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Educator/CurrentClass.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Educator/EducatorHome.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Educator/EducatorHome.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/educatorHome_styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/educatorHome_styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Chat/Chat.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Chat/Chat.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Learner/LearnerHome.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Learner/LearnerHome.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

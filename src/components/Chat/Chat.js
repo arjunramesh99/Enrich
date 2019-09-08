@@ -15,6 +15,7 @@ class Chat extends React.Component {
     }
 
     componentDidMount() {
+        console.log(this.props);
         const chatManager = new ChatManager({
             instanceLocator,
             userId: 'venkata',
