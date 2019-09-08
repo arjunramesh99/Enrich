@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextField } from '@material-ui/core';
+import '../../styles/infoForm.css'
 
 export default class Login extends React.Component {
     constructor(props) {
@@ -32,16 +32,17 @@ export default class Login extends React.Component {
 
     render() {
         return(
-            <form onSubmit={this.handleSubmit}>
-                <h2>Login</h2>
-                Username:<br />
-                <input type="text" onChange={this.handleChange} id="username" />
-                <br />
-                Password:<br />
-                <input type="password" onChange={this.handleChange} id="password" />
-                <br /><br />
-                <button>Submit</button>
-            </form>
+            <div className={"form-block w-form"}>
+                <form className={'info-form'} onSubmit={this.handleSubmit}>
+                    <label htmlFor={"username"} className={"field-label"}>Username</label>
+                    <input className={'text-field w-input'} type="text" onChange={this.handleChange} id="username" />
+
+                    <label htmlFor={"password"} className={"field-label"}>Password</label>
+                    <input className={'text-field w-input'} type="password" onChange={this.handleChange} id="password" />
+
+                    <button className={"login-button"}>Login</button>
+                </form>
+            </div>
         )
     }
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../styles/infoForm.css'
 
 export default class EnterRoom extends React.Component {
     constructor(props) {
@@ -20,11 +21,11 @@ export default class EnterRoom extends React.Component {
         console.log(this.props);
         this.props.handleEnterRoom(this.state.learner_name, this.state.educator_name, this.state.room_id);
 
-        /*this.setState({
+        this.setState({
             learner_name: "",
             educator_name: "",
             room_id: ""
-        })*/
+        })
     }
 
     handleChange(e) {
@@ -36,19 +37,20 @@ export default class EnterRoom extends React.Component {
 
     render() {
         return(
-            <form onSubmit={this.handleSubmit}>
-                <h2>Enter a Classroom</h2>
-                Full Name:<br />
-                <input type="text" onChange={this.handleChange} id="learner_name" />
-                <br />
-                Professor Name:<br />
-                <input type={"text"} onChange={this.handleChange} id={"educator_name"} />
-                <br />
-                Room ID:<br />
-                <input type="text" onChange={this.handleChange} id="room_id" />
-                <br /><br />
-                <button>Submit</button>
-            </form>
+            <div className={"form-block w-form"}>
+                <form className={'info-form'} onSubmit={this.handleSubmit}>
+                    <label htmlFor={"learner_name"} className={"field-label"}>Name</label>
+                    <input className={'text-field w-input'} type="text" onChange={this.handleChange} id="learner_name" />
+
+                    <label htmlFor={"educator_name"} className={"field-label"}>Professor Name</label>
+                    <input className={'text-field w-input'} type={"text"} onChange={this.handleChange} id={"educator_name"} />
+
+                    <label htmlFor={"room_id"} className={"field-label"}>Room ID</label>
+                    <input className={'text-field w-input'} type="text" onChange={this.handleChange} id="room_id" />
+
+                    <button className={"login-button"}>Submit</button>
+                </form>
+            </div>
         )
     }
 }

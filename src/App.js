@@ -16,6 +16,11 @@ class App extends React.Component {
         this.state = {
             firebase_root: null,
             loggedInEducatorID: null,
+            studentClassroomInfo: {
+                studentID: "",
+                professorID: "",
+                roomID: ""
+            }
         };
 
         this.handleLogin = this.handleLogin.bind(this);
@@ -76,23 +81,33 @@ class App extends React.Component {
     handleEnterRoom(learnerName, educatorName, roomID) {
         this.state.firebase_root.once("value", snap => {
             const root_data = snap.val();
-           const prof_list = Object.values(root_data);
-           const profIndex = prof_list.map(e => e.name).indexOf(educatorName);
-           const profID = Object.keys(root_data)[profIndex];
-           console.log(root_data);
-           console.log(profIndex);
-           console.log(profID);
-           if (profIndex !== -1) {
-               if (prof_list[profIndex].classes.hasOwnProperty(roomID)) {
-                   this.state.firebase_root.child(profID + '/classes/'+ roomID + '/students/').push(
-                       { name: learnerName, ls: 1}
-                   );
-               }
-               //this.state.firebase_root.child(prof_list[profIndex] + '/classes/').once("value", )
-           }
-           else {
-               console.log("Not Found");
-           }
+            const prof_list = Object.values(root_data);
+            const profIndex = prof_list.map(e => e.name).indexOf(educatorName);
+            const profID = Object.keys(root_data)[profIndex];
+            let newStudentID = null;
+
+            console.log(root_data);
+            console.log(profIndex);
+            console.log(profID);
+            if (profIndex !== -1) {
+                if (prof_list[profIndex].classes.hasOwnProperty(roomID)) {
+                    newStudentID = this.state.firebase_root.child(profID + '/classes/'+ roomID + '/students/')
+                        .push({ name: learnerName, ls: 1});
+                    newStudentID = newStudentID.key;
+                    this.setState({
+                        studentClassroomInfo: {
+                            studentID: newStudentID,
+                            professorID: profID,
+                            roomID
+                        }
+                    })
+                }
+                   //this.state.firebase_root.child(prof_list[profIndex] + '/classes/').once("value", )
+            } else {
+                console.log("Not Found");
+            }
+        }).then( _ => {
+            history.push('/learnerHome')
         })
     }
 
@@ -115,12 +130,20 @@ class App extends React.Component {
 
                 <Route
                     path={"/learnerHome"}
-                    render={props => <LearnerHome {...props} />}
+                    render={props =>
+                        <LearnerHome {...props}
+                                     firebase_root={this.state.firebase_root}
+                                     studentClassroomInfo={this.state.studentClassroomInfo}
+                        />}
                 />
 
                 <Route
                     path={"/educatorHome"}
-                    render={props => <EducatorHome {...props} {...this.state} />}
+                    render={props =>
+                        <EducatorHome {...props}
+                                      firebase_root={this.state.firebase_root}
+                                      loggedInEducatorID={this.state.loggedInEducatorID}
+                        />}
                 />
             </Router>
         );

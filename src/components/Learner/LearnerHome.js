@@ -4,21 +4,16 @@ import '../../styles/studentHome_styles.css'
 export default class LearnerHome extends React.Component {
     constructor(props) {
         super(props);
+
+        const {studentID, professorID, roomID} = this.props.studentClassroomInfo;
         this.state = {
-            student_ref: this.props.curr_classroom.child('students/student 1'),
-            ls: 0
+            studentRef: this.props.firebase_root.child(
+                `${professorID}/classes/${roomID}/students/${studentID}`
+            ),
+            ls: 1
         };
-
         this.handleClick = this.handleClick.bind(this);
-    }
 
-    componentDidMount() {
-        const ref = this.props.curr_classroom.child('students/student 1');
-        ref.once("value", snap => {
-            this.setState(
-                {ls:snap.val().ls}
-            )
-        });
     }
 
     handleClick(e) {
@@ -26,11 +21,9 @@ export default class LearnerHome extends React.Component {
             return {
                 ls: !curr_state.ls
             }
-        },
-            () => {
-                this.state.student_ref.update({ls: this.state.ls});
-            });
-
+        },() => {
+                this.state.studentRef.update({ls: this.state.ls});
+        });
     }
 
     render() {
