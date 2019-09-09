@@ -41,6 +41,9 @@ class ClassroomPanel extends React.Component {
                         </Link>
                     )}
                 </div>
+                <div>
+
+                </div>
 
                 <form className={"new_class_form"} onSubmit={this.handleSubmit}>
                     Enter New Class ID:

@@ -9,16 +9,15 @@ class Chat extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            messages: []
+            messages: [],
         }
         this.sendMessage = this.sendMessage.bind(this)
     }
 
     componentDidMount() {
-        console.log(this.props);
         const chatManager = new ChatManager({
             instanceLocator,
-            userId: 'venkata',
+            userId: 'Student',
             tokenProvider: new TokenProvider({
                 url: tokenUrl
             })
@@ -26,7 +25,7 @@ class Chat extends React.Component {
         chatManager.connect().then(currentUser => {
             this.currentUser = currentUser
             this.currentUser.subscribeToRoom({
-                roomId: '4667e38d-683b-4f23-8105-eebf13b7a39c',
+                roomId: '204a4414-cb18-4914-9bef-c00e38d6ae45',
                 hooks: {
                     onMessage: message => {
                         this.setState({
@@ -41,7 +40,7 @@ class Chat extends React.Component {
     sendMessage(text){
         this.currentUser.sendMessage({
             text,
-            roomId: '4667e38d-683b-4f23-8105-eebf13b7a39c'
+            roomId: '204a4414-cb18-4914-9bef-c00e38d6ae45'
         })
     }
 

@@ -5,12 +5,18 @@ import Chat from '../Chat/Chat'
 import Transcript from "./Transcript";
 
 const CurrentClassElements = props => {
+    let num_active_students = 0;
+    if (props.classroom.students !== null && props.classroom.students !== undefined)
+        num_active_students = Object.values(props.classroom.students).length;
+    console.log(num_active_students);
     return (
         <div className={"current_class_parent"}>
             <Chat />
             <div className={"right_third"}>
                 <div className={"learning_ratio_monitor_container"}>
-                    <div className={"heading_1"}>Your Learning Ratio</div>
+                    <div className={"heading_1"}>
+                        {`Your Learning Ratio for ${num_active_students} Student(s)`}
+                    </div>
                     <div
                         className={"learning_ratio_monitor"}
                         style={{backgroundColor: props.calculateColorGradient(props.classroom)}}

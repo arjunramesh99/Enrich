@@ -5,6 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^4.4.0",
     "@pusher/chatkit-client": "^1.12.1",
+    "@pusher/chatkit-server": "^2.1.0",
     "firebase": "^6.6.0",
     "history": "^4.9.0",
     "react": "^16.9.0",
